@@ -1,10 +1,14 @@
+import axios from "axios";
 import { GetStaticPaths, GetStaticProps } from "next";
 import Link from "next/Link";
+import Meta from "../../../components/Meta";
+import { server } from "../../../config";
 import { ArticleType } from "../../../types/Article";
 
 const article: React.FC<{ article: ArticleType }> = ({ article }) => {
   return (
     <>
+      <Meta title={article.title} description={article.excerpt} />
       <h1>{article.title}</h1>
       <p>{article.body}</p>
       <br />
@@ -14,25 +18,29 @@ const article: React.FC<{ article: ArticleType }> = ({ article }) => {
 };
 
 export const getStaticProps: GetStaticProps = async (context) => {
-  const res = await fetch(
-    `https://jsonplaceholder.typicode.com/posts/${context.params.id}`
-  );
+  const url =
+    process.env.NODE_ENV !== "production"
+      ? `${server}/api/articles/${context.params.id}`
+      : `https://jsonplaceholder.typicode.com/posts/${context.params.id}`;
 
-  const article = await res.json();
+  const { data } = await axios.get(url);
 
   return {
     props: {
-      article,
+      article: data,
     },
   };
 };
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const res = await fetch(`https://jsonplaceholder.typicode.com/posts`);
+  const url =
+    process.env.NODE_ENV !== "production"
+      ? `${server}/api/articles/`
+      : `https://jsonplaceholder.typicode.com/posts`;
 
-  const articles = await res.json();
+  const { data } = await axios.get(url);
 
-  const ids = articles.map((article) => article.id);
+  const ids = data.map((article) => article.id);
   const paths = ids.map((id) => ({ params: { id: id.toString() } }));
 
   return {

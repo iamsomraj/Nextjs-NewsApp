@@ -8,6 +8,7 @@ const MyApp: React.FC<{ Component: React.FC; pageProps: any }> = ({
 }) => {
   return (
     <Layout>
+      
       <Component {...pageProps} />
     </Layout>
   );

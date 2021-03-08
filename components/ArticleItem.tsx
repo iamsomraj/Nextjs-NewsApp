@@ -6,7 +6,7 @@ const ArticleItem: React.FC<{ article: ArticleType }> = ({ article }) => {
     <NextLink href={`/articles/${article.id}`}>
       <a>
         <h3>{article.title} &rarr;</h3>
-        <p>{article.body}</p>
+        <p>{article.excerpt}</p>
       </a>
     </NextLink>
   );
