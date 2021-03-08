@@ -9,6 +9,10 @@ const Home: React.FC = () => {
           name="description"
           content="A simple blog post application written in typescript"
         />
+        <meta
+          name="keywords"
+          content="web dev, web developer, news, react, next news"
+        />
       </Head>
       <h1>Hello World</h1>
     </div>
