@@ -4,14 +4,14 @@ import ArticleItem from "./ArticleItem";
 
 const ArticleList: React.FC<{ articles: ArticleType[] }> = ({ articles }) => {
   return (
-    <div className={styles.grid}>
+    <>
       <h1>Articles</h1>
-      <div>
+      <div className={styles.grid}>
         {articles.map((article) => {
           return <ArticleItem key={article.id} article={article} />;
         })}
       </div>
-    </div>
+    </>
   );
 };
 

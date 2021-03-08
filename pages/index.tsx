@@ -15,10 +15,7 @@ const Home: React.FC<{ articles: ArticleType[] }> = ({ articles }) => {
 
 export default Home;
 
-export const getStaticProps: GetStaticProps = async () => {
-
-  console.log(process.env.NODE_ENV );
-  
+export const getStaticProps: GetStaticProps = async () => {  
   const url =
     process.env.NODE_ENV !== "production"
       ? `${server}/api/articles`

@@ -4,15 +4,18 @@ import Link from "next/Link";
 import Meta from "../../../components/Meta";
 import { server } from "../../../config/index";
 import { ArticleType } from "../../../types/Article";
+import styles from "../../../styles/Article.module.css";
 
 const article: React.FC<{ article: ArticleType }> = ({ article }) => {
   return (
     <>
       <Meta title={article.title} description={article.excerpt} />
-      <h1>{article.title}</h1>
-      <p>{article.body}</p>
-      <br />
-      <Link href="/">Go Back</Link>
+      <div className={styles.card}>
+        <h1>{article.title}</h1>
+        <p>{article.body}</p>
+        <br />
+        <Link href="/">Go Back</Link>
+      </div>
     </>
   );
 };
