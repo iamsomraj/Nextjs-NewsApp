@@ -3,8 +3,18 @@ import Head from "next/head";
 const Home: React.FC = () => {
   return (
     <div>
-      <h1>Hello World for Next</h1>
-      <h3>A great app</h3>
+      <Head>
+        <title>Web Developer</title>
+        <meta
+          name="description"
+          content="A simple blog post application written in typescript"
+        />
+        <meta
+          name="keywords"
+          content="web dev, web developer, news, react, next news"
+        />
+      </Head>
+      <h1>Hello World</h1>
     </div>
   );
 };
