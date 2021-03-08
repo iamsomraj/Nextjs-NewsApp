@@ -1,40 +1,26 @@
 import Head from "next/head";
 import axios from "axios";
+import { GetStaticProps } from "next";
+import ArticleList from "../components/ArticleList";
+import { ArticleType } from "../types/Article";
 
-const Home: React.FC<{ users: string[] }> = ({ users }) => {
+const Home: React.FC<{ articles: ArticleType[] }> = ({ articles }) => {
   return (
     <div>
-      <Head>
-        <title>Web Developer</title>
-        <meta
-          name="description"
-          content="A simple blog post application written in typescript"
-        />
-        <meta
-          name="keywords"
-          content="web dev, web developer, news, react, next news"
-        />
-      </Head>
-      <h1>Users</h1>
-      <div>
-        {users.map((user) => {
-          return <p key={user}>{user}</p>;
-        })}
-      </div>
+      <ArticleList articles={articles} />
     </div>
   );
 };
 
 export default Home;
 
-export const getStaticProps = async () => {
+export const getStaticProps: GetStaticProps = async () => {
   const { data } = await axios.get(
-    "https://jsonplaceholder.typicode.com/users"
+    "https://jsonplaceholder.typicode.com/posts?_limit=10"
   );
-  const users: string[] = data.map((user) => user.name);
   return {
     props: {
-      users,
+      articles: data,
     },
   };
 };
