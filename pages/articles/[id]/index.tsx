@@ -2,7 +2,7 @@ import axios from "axios";
 import { GetStaticPaths, GetStaticProps } from "next";
 import Link from "next/Link";
 import Meta from "../../../components/Meta";
-import { server } from "../../../config";
+import { server } from "../../../config/index";
 import { ArticleType } from "../../../types/Article";
 
 const article: React.FC<{ article: ArticleType }> = ({ article }) => {
